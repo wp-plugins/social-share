@@ -1,4 +1,4 @@
-=== JP Social Bookmarks ===
+=== Social Share ===
 Contributors: jonpreecebsc
 Donate link: http://www.jpreece.com
 Tags: social,share,follow,facebook,twitter
