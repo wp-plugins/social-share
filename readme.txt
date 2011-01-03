@@ -24,7 +24,7 @@ Features include;
 * Change the font
 * Change the language of the Facebook button (includes all supported Facebook languages, including Pirate and Klingon)
 
-Get in touch and tell us [what features you want!] (http://www.jpreece.com/contact/)
+Get in touch and tell us what features you want! - http://www.jpreece.com/contact/
 
 == Installation ==
 
