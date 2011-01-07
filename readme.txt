@@ -1,30 +1,28 @@
 === Social Share ===
 Contributors: jonpreecebsc
 Donate link: http://www.jpreece.com
-Tags: social,share,follow,facebook,twitter
-Requires at least: 3.0
+Tags: social,share,follow,facebook,twitter,stumbleupon
+Requires at least: 2.9
 Tested up to: 3.0.4
 Stable tag: 1.0
 
-Add Facebook/Twitter share buttons to your website.
+Add various social networking share buttons to your website, including; Facebook, Twitter and StumbleUpon.
 
 == Description ==
-Add Facebook/Twitter share buttons to your website.  This plugin is designed to make it easy to add Facebook and Twitter share buttons to your website using a widget.
+Add various social networking share buttons to your website, including; Facebook, Twitter and StumbleUpon.
 
 Features include;
 
 * Add Twitter share button to your website
-* Customize the style of the Twitter button
-* Customize the language of the Twitter button
+* Customize the style and language of the Twitter button.
 * Add Facebook share button to your website
 * Customize the style of the Facebook button
-* Show faces on your Facebook button
 * Customize the width/height of your Facebook button
-* Change the verb to "Like" or "Recommend"
-* Change the font
+* Change the verb to "Like" or "Recommend" and font
 * Change the language of the Facebook button (includes all supported Facebook languages, including Pirate and Klingon)
+* Add StumbleUpon button to your website, including 5 different styles.
 
-Get in touch and tell us what features you want! - http://www.jpreece.com/contact/
+[Get in touch and tell us what features you want!](http://www.jpreece.com/contact/, "Contact")
 
 == Installation ==
 
@@ -33,7 +31,7 @@ You can install the plugin manually by;
 1. Upload `SocialShare` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Go to "Appearance", drag the widget into your primary widget area
-4. See http://www.jpreece.com/wordpress/social-share-plugin-for-wordpress/ for complete tutorial
+4. See the [Social Share Website](http://www.jpreece.com/wordpress/social-share-plugin-for-wordpress/, "Social Share") for complete tutorial
 
 Or you can install the plugin automatically using the WordPress Dashboard;
 
@@ -62,12 +60,21 @@ You can also add custom CSS to control the layout.  CSS classes are;
 2. .socialshare-twitter
 3. .socialshare-facebook
 
+== Upgrade Notice ==
+
+= 1.1 =
+* Adds StumbleUpon
+* Adds ability to switch off individual buttons
+
 == Screenshots ==
 1. Preview
 2. Enter Twitter username
 3. Widget Preview
 
 == Changelog ==
+
+= 1.1 =
+Adds StumbleUpon share button and adds ability to switch off any button
 
 = 1.0 =
 * First release

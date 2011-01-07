@@ -1,4 +1,4 @@
-setTimeout('UpdateFacebook()', 1000);
+setTimeout('UpdateFacebook(), UpdateStumbleUpon()', 1000);
 
 function UpdateTwitter()
 {   
@@ -15,6 +15,22 @@ function UpdateTwitter()
 	var doc = twitterIFrame.contentDocument;
     if (doc == undefined || doc == null)
         doc = twitterIFrame.contentWindow.document;
+    
+	doc.open();
+    doc.write(src);
+    doc.close(); 
+}
+
+function UpdateStumbleUpon()
+{   
+	var stumbleuponIFrame = document.getElementById('stumbleuponIFrame');	
+	var style = document.getElementById('socialshare-stumbleStyle').value;
+		
+	var src = 	'<script src="http://www.stumbleupon.com/hostedbadge.php?s='+style+'&r=http://www.jpreece.com"></script>';
+									
+	var doc = stumbleuponIFrame.contentDocument;
+    if (doc == undefined || doc == null)
+        doc = stumbleuponIFrame.contentWindow.document;
     
 	doc.open();
     doc.write(src);

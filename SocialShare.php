@@ -2,9 +2,9 @@
 /*
 Plugin Name: Social Share
 Plugin URI: http://www.jpreece.com/
-Description: Simple sharing widget for Facebook and Twitter
+Description: Simple sharing widget for various social networking sites, such as Facebook and Twitter
 Author: Jon Preece
-Version: 1.0
+Version: 1.1
 Author URI: http://www.jpreece.com/
 */
 
@@ -14,36 +14,63 @@ function widget_DisplayShareLinks()
 		<div class="socialshare-widget">
 			<!-- Twitter -->
 			<div class="socialshare-twitter">
-				<a href="http://twitter.com/share" class="twitter-share-button" data-lang="<?php echo get_option('socialshare-twitterlanguage'); ?>" data-count="<?php echo get_option('socialshare-buttonstyle'); ?>" data-via="<?php echo get_option('socialshare-twitterUsername'); ?>">Tweet</a>
-				<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+			
+			<?php
+				$displayTwitter = get_option('socialshare-displaytwitter');
+				
+				if ($displayTwitter == "")
+				{
+					echo '<a href="http://twitter.com/share" class="twitter-share-button" data-lang="'.get_option("socialshare-twitterlanguage").'" data-count="'.get_option("socialshare-buttonstyle").'" data-via="'.get_option("socialshare-twitterUsername").'">Tweet</a>';
+					echo '<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>';	
+				}					
+			?>
+			</div>
+			
+			<!-- StumbleUpon -->
+			<div class="socialshare-stumbleupon">
+			
+			<?php
+				$displayStumbleupon = get_option('socialshare-displayStumbleupon');
+				$style = get_option('socialshare-stumbleStyle');
+				
+				if ($displayStumbleupon == "")
+				{
+					echo '<script src="http://www.stumbleupon.com/hostedbadge.php?s='.$style.'&r='."http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'"></script>';
+				}					
+			?>
 			</div>
 			
 			<!-- Facebook -->
-			<?php			
-				$width = get_option('socialshare-width');
+			<?php	
+				$displayFacebook = get_option('socialshare-displayfacebook');
 				
-				echo '<div class="socialshare-facebook" style="width:'.$width.'px;">';
-			
-				echo '<iframe src="http://www.facebook.com/plugins/like.php?href=';
-				echo "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+				if ($displayFacebook == "")
+				{
+					$width = get_option('socialshare-width');
+					
+					echo '<div class="socialshare-facebook" style="width:'.$width.'px;">';
 				
-				$layout = get_option('socialshare-layout');
-				
-				$showfaces = get_option('socialshare-showfaces');
-				if ($showfaces == "on" || $showfaces == "true")
-					$showfaces = "true";
-				else
-					$showfaces = "false";
-				
-				$width = get_option('socialshare-width');
-				$height = get_option('socialshare-height');
-				$action = get_option('socialshare-action');
-				$font = get_option('socialshare-font');
-				$colorscheme = get_option('socialshare-colorscheme');
-				$fblanguage = get_option('socialshare-facebooklanguage');
-				
-				echo '&layout='.$layout.'&show_faces='.$showfaces.'&width='.$width.'&action='.$action.'&font='.$font.'&colorscheme='.$colorscheme.'&height='.$height.'&locale='.$fblanguage.'"';
-				echo 'scrolling="no" frameborder="0" style="width:'.$width.'px; height:'.$height.'px;"></iframe>';
+					echo '<iframe src="http://www.facebook.com/plugins/like.php?href=';
+					echo "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+					
+					$layout = get_option('socialshare-layout');
+					
+					$showfaces = get_option('socialshare-showfaces');
+					if ($showfaces == "on" || $showfaces == "true")
+						$showfaces = "true";
+					else
+						$showfaces = "false";
+					
+					$width = get_option('socialshare-width');
+					$height = get_option('socialshare-height');
+					$action = get_option('socialshare-action');
+					$font = get_option('socialshare-font');
+					$colorscheme = get_option('socialshare-colorscheme');
+					$fblanguage = get_option('socialshare-facebooklanguage');
+					
+					echo '&layout='.$layout.'&show_faces='.$showfaces.'&width='.$width.'&action='.$action.'&font='.$font.'&colorscheme='.$colorscheme.'&height='.$height.'&locale='.$fblanguage.'"';
+					echo 'scrolling="no" frameborder="0" style="width:'.$width.'px; height:'.$height.'px;"></iframe>';
+				}
 			?>
 			</div>
 		</div>
@@ -77,21 +104,36 @@ function LayoutSettingsForm()
 		<form method="post" action="options.php">
 		<?php wp_nonce_field('update-options'); ?>
 		<input type="hidden" name="action" value="update" />
-		<input type="hidden" name="page_options" value="socialshare-twitterUsername,socialshare-buttonstyle,socialshare-twitterlanguage,socialshare-layout,socialshare-showfaces,socialshare-width,socialshare-height,socialshare-action,socialshare-font,socialshare-colorscheme,socialshare-facebooklanguage" />
+		<input type="hidden" name="page_options" value="socialshare-displaytwitter,socialshare-twitterUsername,socialshare-buttonstyle,socialshare-twitterlanguage,socialshare-displayfacebook,socialshare-layout,socialshare-showfaces,socialshare-width,socialshare-height,socialshare-action,socialshare-font,socialshare-colorscheme,socialshare-facebooklanguage,socialshare-displayStumbleupon,socialshare-stumbleStyle,socialshare-displayDigg,socialshare-diggStyle" />
 		
 		<div style="float:left">
 			<h3>Twitter</h3>
-			<table class="form-table" style="background-color:#fff; margin-bottom:25px; width:400px; border:1px solid #FFF8C6">
+			<table class="form-table" style="margin-bottom:25px; width:400px;">
 				<tr>
-					<th scope="row">Username: (without @)</th>
+					<th scope="row">Do not display:</th>
 					<td>
-						<input type="text" name="socialshare-twitterUsername" id="socialshare-twitterUsername" value="<?php echo get_option('socialshare-twitterUsername'); ?>" style="width:150px" onchange="UpdateTwitter()" />
+						<?php
+							$displayTwitter = get_option('socialshare-displaytwitter');		
+							$checked = "";
+							if ($displayTwitter == "on" || $displayTwitter == "true")
+								$checked = "checked";
+							else
+								$checked = "";
+							
+							echo '<input type="checkbox" name="socialshare-displaytwitter" id="socialshare-displaytwitter" '.$checked.' />';
+						?>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">Username:</th>
+					<td>
+						<input type="text" name="socialshare-twitterUsername" id="socialshare-twitterUsername" value="<?php echo get_option('socialshare-twitterUsername'); ?>" style="width:200px" onchange="UpdateTwitter()" />
 					</td>
 				</tr>
 				<tr>
 					<th scope="row">Button Style:</th>
 					<td>
-						<select name="socialshare-buttonstyle" id="socialshare-buttonstyle" style="width:150px" onchange="UpdateTwitter()">						
+						<select name="socialshare-buttonstyle" id="socialshare-buttonstyle" style="width:200px" onchange="UpdateTwitter()">						
 						<?php						
 							$buttonStyle = get_option('socialshare-buttonstyle');
 							$options = array (1=>array('vertical','Vertical'),2=>array('horizontal','Horizontal'),3=>array('none','None'));							
@@ -110,7 +152,7 @@ function LayoutSettingsForm()
 				<tr>
 					<th scope="row">Language:</th>
 					<td>
-						<select name="socialshare-twitterlanguage" id="socialshare-twitterlanguage" style="width:150px" onchange="UpdateTwitter()">
+						<select name="socialshare-twitterlanguage" id="socialshare-twitterlanguage" style="width:200px" onchange="UpdateTwitter()">
 						<?php
 							$language = get_option('socialshare-twitterlanguage');
 							$options = array(1=>array('en','English'), 2=>array('fr','French'),3=>array('de','German'),4=>array('es','Spanish'),5=>array('ja','Japanese'));
@@ -128,17 +170,75 @@ function LayoutSettingsForm()
 				</tr>
 			</table>
 		</div>
-		<div style="float:right; margin-top:41px; width:225px; height:75px">
+		<div style="float:right; margin-top:41px; width:225px; height:60px">
 			<iframe id="twitterIFrame" onload="UpdateTwitter()"></iframe>
 		</div>
 		
 		<div style="float:left">
+			<h3>StumbleUpon</h3>
+			<table class="form-table" style="margin-bottom:25px; width:400px;">
+				<tr>
+					<th scope="row">Do not display:</th>
+					<td>
+						<?php
+							$displayStumbleupon = get_option('socialshare-displayStumbleupon');		
+							$checked = "";
+							if ($displayStumbleupon == "on" || $displayStumbleupon == "true")
+								$checked = "checked";
+							else
+								$checked = "";
+							
+							echo '<input type="checkbox" name="socialshare-displayStumbleupon" id="socialshare-displayStumbleupon" '.$checked.' />';
+						?>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">Button Style:</th>
+					<td>
+						<select name="socialshare-stumbleStyle" id="socialshare-stumbleStyle" style="width:200px" onchange="UpdateStumbleUpon()">						
+						<?php						
+							$buttonStyle = get_option('socialshare-stumbleStyle');
+							$options = array (1=>array('1','Style 1'),2=>array('2','Style 2'),3=>array('3','Style 3'),4=>array('4','Style 4'),5=>array('5', 'Style 5'), 6=>array('6', 'Style 6'));							
+							
+							foreach($options as $index => $value)
+							{
+								echo '<option value="'.$value[0].'"';
+								if ($value[0] == $buttonStyle)
+									echo ' selected';
+								echo '>'.$value[1].'</option>';
+							}
+						?>
+						</select>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div style="float:right; margin-top:41px; width:225px; height:60px">
+			<iframe id="stumbleuponIFrame"></iframe>
+		</div>
+		
+		<div style="float:left">
 			<h3>Facebook</h3>
-			<table class="form-table" style="background-color:#fff; margin-bottom:25px; width:400px; border:1px solid #FFF8C6">
+			<table class="form-table" style="margin-bottom:25px; width:400px;">
+				<tr>
+					<th scope="row">Do not display:</th>
+					<td>
+						<?php
+							$displayFacebook = get_option('socialshare-displayfacebook');
+							$checked = "";
+							if ($displayFacebook == "on" || $displayFacebook == "true")
+								$checked = "checked";
+							else
+								$checked = "";
+							
+							echo '<input type="checkbox" name="socialshare-displayfacebook" id="socialshare-displayfacebook" '.$checked.' />';
+						?>
+					</td>
+				</tr>
 				<tr>
 					<th scope="row">Layout Style:</th>
 					<td>
-						<select id="socialshare-layout" name="socialshare-layout" style="width:150px" onchange="UpdateFacebook()">
+						<select id="socialshare-layout" name="socialshare-layout" style="width:200px" onchange="UpdateFacebook()">
 						<?php
 							$layout = get_option('socialshare-layout');
 							$options = array(1=>array('standard','Standard'),2=>array('button_count','Button Count'),3=>array('box_count','Box Count'));
@@ -176,7 +276,7 @@ function LayoutSettingsForm()
 							if ($width == "")
 								$width="75";
 							
-							echo '<input type="text" name="socialshare-width" id="socialshare-width" value="'.$width.'" style="width:150px" onchange="UpdateFacebook()" />';
+							echo '<input type="text" name="socialshare-width" id="socialshare-width" value="'.$width.'" style="width:200px" onchange="UpdateFacebook()" />';
 						?>
 					</td>
 				</tr>
@@ -188,14 +288,14 @@ function LayoutSettingsForm()
 							if ($height == "")
 								$height="75";
 								
-							echo '<input type="text" name="socialshare-height" id="socialshare-height" value="'.$height.'" style="width:150px" onchange="UpdateFacebook()" />';
+							echo '<input type="text" name="socialshare-height" id="socialshare-height" value="'.$height.'" style="width:200px" onchange="UpdateFacebook()" />';
 						?>
 					</td>
 				</tr>
 				<tr>
 					<th scope="row">Verb To Display:</th>
 					<td>
-						<select name="socialshare-action" id="socialshare-action" style="width:150px" onchange="UpdateFacebook()">
+						<select name="socialshare-action" id="socialshare-action" style="width:200px" onchange="UpdateFacebook()">
 						
 						<?php
 							$action = get_option('socialshare-action');
@@ -215,7 +315,7 @@ function LayoutSettingsForm()
 				<tr>
 					<th scope="row">Font:</th>
 					<td>
-						<select name="socialshare-font" id="socialshare-font" style="width:150px" onchange="UpdateFacebook()">
+						<select name="socialshare-font" id="socialshare-font" style="width:200px" onchange="UpdateFacebook()">
 							
 							<?php
 								$font = get_option('socialshare-font');
@@ -235,7 +335,7 @@ function LayoutSettingsForm()
 				<tr>
 					<th scope="row">Color Scheme:</th>
 					<td>
-						<select name="socialshare-colorscheme" id="socialshare-colorscheme" style="width:150px" onchange="UpdateFacebook()">
+						<select name="socialshare-colorscheme" id="socialshare-colorscheme" style="width:200px" onchange="UpdateFacebook()">
 							
 							<?php
 								$colorscheme = get_option('socialshare-colorscheme');
@@ -256,7 +356,7 @@ function LayoutSettingsForm()
 				<tr>
 					<th scope="row">Language:</th>
 					<td>
-						<select name="socialshare-facebooklanguage" id="socialshare-facebooklanguage" style="width:150px" onchange="UpdateFacebook()">
+						<select name="socialshare-facebooklanguage" id="socialshare-facebooklanguage" style="width:200px" onchange="UpdateFacebook()">
 						
 						<?php
 						
@@ -283,7 +383,7 @@ function LayoutSettingsForm()
 			</p>			
 		</div>
 		
-		<div style="float:right; margin-top:50px; width:225px; height:150px">
+		<div style="float:right; margin-top:41px; width:225px; height:60px">
 			<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.jpreece.com%2F&amp;layout=standard&amp;show_faces=false&amp;width=225&amp;action=like&amp;colorscheme=light&amp;height=150" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:225px; height:150px;" allowTransparency="true" id="facebookIFrame"></iframe>
 		</div>
 		
@@ -294,7 +394,7 @@ function LayoutSettingsForm()
 		<h3>Support</h3>
 		<p>For support, contact us direct;</p>
 		<p>&nbsp;</p>
-		<p>Website: <a href="http://www.jpreece.com/">jpreece.com</a></p>
+		<p>Website: <a href="http://www.jpreece.com/contact/">jpreece.com</a></p>
 		<p>Twitter: <a href="http://twitter.com/jonpreecebsc">@jonpreecebsc</a></p>
 		<p>&nbsp;</p>
 		<p>Please help us continue development.</p>
@@ -309,9 +409,7 @@ function share_warning()
 	$twitterUsername = get_option('socialshare-twitterUsername');
 	if ($twitterUsername == "")
 	{
-		echo "
-		<div id='share-warning' class='updated fade'><p><strong>".__('Social Share needs configuring.')."</strong> ".sprintf(__('You must <a href="%1$s">enter your Twitter username</a> for the plugin to work properly.'), "options-general.php?page=socialshare")."</p></div>
-		";
+		echo "<div id='share-warning' class='updated fade'><p><strong>".__('Social Share needs configuring.')."</strong> ".sprintf(__('You must <a href="%1$s">enter your Twitter username</a> for the plugin to work properly.'), "options-general.php?page=socialshare")."</p></div>";
 	}
 }
 
@@ -334,8 +432,10 @@ function DisplayPaypalButton()
 
 function LoadJavaScript()
 {	
+	wp_register_script('socialshare-diggscript', 'http://widgets.digg.com/buttons.js');
+	wp_enqueue_script('socialshare-diggscript');
 	wp_register_script('socialshare-script', WP_PLUGIN_URL . '/SocialShare/Script.js');
-	wp_enqueue_script('socialshare-script');	
+	wp_enqueue_script('socialshare-script');
 }  
 
 function LoadCSS()
