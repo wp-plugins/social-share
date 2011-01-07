@@ -4,7 +4,7 @@ Donate link: http://www.jpreece.com
 Tags: social,share,follow,facebook,twitter,stumbleupon
 Requires at least: 2.9
 Tested up to: 3.0.4
-Stable tag: 1.0
+Stable tag: 1.1
 
 Add various social networking share buttons to your website, including; Facebook, Twitter and StumbleUpon.
 
