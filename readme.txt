@@ -69,8 +69,8 @@ You can also add custom CSS to control the layout.  CSS classes are;
 
 == Screenshots ==
 1. Preview
-2. Enter Twitter username
-3. Widget Preview
+2. Configuration
+3. Widget
 
 == Changelog ==
 
