@@ -63,6 +63,11 @@ You can also add custom CSS to control the layout.  CSS classes are;
 
 == Upgrade Notice ==
 
+= 1.2 =
+* Adds Reddit
+* Adds customization via the widget
+* Code review
+
 = 1.1 =
 * Adds StumbleUpon
 * Adds ability to switch off individual buttons
@@ -73,6 +78,11 @@ You can also add custom CSS to control the layout.  CSS classes are;
 3. Widget
 
 == Changelog ==
+
+= 1.2 =
+* Adds Reddit
+* Adds customization via the widget
+* Code review
 
 = 1.1 =
 Adds StumbleUpon share button and adds ability to switch off any button
