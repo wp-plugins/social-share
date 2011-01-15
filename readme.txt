@@ -1,15 +1,15 @@
 === Social Share ===
 Contributors: jonpreecebsc
 Donate link: http://www.jpreece.com
-Tags: social,share,follow,facebook,twitter,stumbleupon
+Tags: social,share,follow,facebook,twitter,stumbleupon,reddit
 Requires at least: 2.9
 Tested up to: 3.0.4
-Stable tag: 1.1
+Stable tag: 1.2
 
-Add various social networking share buttons to your website, including; Facebook, Twitter and StumbleUpon.
+Add various social networking share buttons to your website, including; Facebook, Twitter, StumbleUpon and Reddit.
 
 == Description ==
-Add various social networking share buttons to your website, including; Facebook, Twitter and StumbleUpon.
+Add various social networking share buttons to your website, including; Facebook, Twitter, StumbleUpon and Reddit.
 
 Features include;
 
@@ -20,7 +20,8 @@ Features include;
 * Customize the width/height of your Facebook button
 * Change the verb to "Like" or "Recommend" and font
 * Change the language of the Facebook button (includes all supported Facebook languages, including Pirate and Klingon)
-* Add StumbleUpon button to your website, including 5 different styles.
+* Add StumbleUpon button to your website, including 5 different designs.
+* Add Reddit.com button to your website, including 20+ different designs.
 
 [Get in touch and tell us what features you want!](http://www.jpreece.com/contact/, "Contact")
 
