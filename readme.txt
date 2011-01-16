@@ -4,7 +4,7 @@ Donate link: http://www.jpreece.com
 Tags: social,share,follow,facebook,twitter,stumbleupon,reddit
 Requires at least: 2.9
 Tested up to: 3.0.4
-Stable tag: 1.2
+Stable tag: 1.3
 
 Add various social networking share buttons to your website, including; Facebook, Twitter, StumbleUpon and Reddit.
 
@@ -20,6 +20,7 @@ Features include;
 * Customize the width/height of your Facebook button
 * Change the verb to "Like" or "Recommend" and font
 * Change the language of the Facebook button (includes all supported Facebook languages, including Pirate and Klingon)
+* Add Facebook plugins to your site, including; Activity Feed, Recommendations and Like Box
 * Add StumbleUpon button to your website, including 5 different designs.
 * Add Reddit.com button to your website, including 20+ different designs.
 
@@ -63,6 +64,9 @@ You can also add custom CSS to control the layout.  CSS classes are;
 
 == Upgrade Notice ==
 
+= 1.3 =
+* Adds Facebook plugins (Activity Feed, Recommendations, Like Box)
+
 = 1.2 =
 * Adds Reddit
 * Adds customization via the widget
@@ -73,11 +77,14 @@ You can also add custom CSS to control the layout.  CSS classes are;
 * Adds ability to switch off individual buttons
 
 == Screenshots ==
-1. Preview
-2. Configuration
-3. Widget
+1. Widget
+2. Widget configurables
+3. Plug-in preview
 
 == Changelog ==
+
+= 1.3 =
+* Adds Facebook plugins (Activity Feed, Recommendations, Like Box)
 
 = 1.2 =
 * Adds Reddit

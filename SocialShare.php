@@ -4,12 +4,15 @@ Plugin Name: Social Share
 Plugin URI: http://www.jpreece.com/
 Description: Simple sharing widget for various social networking sites, including Facebook and Twitter
 Author: Jon Preece
-Version: 1.2
+Version: 1.3
 Author URI: http://www.jpreece.com/
 */
 
 require_once ('widget.php');
 require_once ('adminsettings.php');
+require_once ('facebookwidgets/activity-feed.inc.php');
+require_once ('facebookwidgets/recommendations.inc.php');
+require_once ('facebookwidgets/likebox.inc.php');
 
 global $SOCIAL_NETWORKS;
 global $CONFIGURABLE_OPTIONS;
@@ -60,6 +63,9 @@ function LoadGlobals()
 function LoadWidgets()
 {
 	register_widget('SocialShare_Widget');
+	register_widget('FB_Activity_Feed_Widget');
+	register_widget('FB_Recommendations_Widget');
+	register_widget('FB_LikeBox_Widget');
 }
 
 function SocialShare_Activate()
